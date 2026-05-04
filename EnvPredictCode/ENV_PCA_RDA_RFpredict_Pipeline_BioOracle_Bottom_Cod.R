@@ -10,7 +10,7 @@ library(ranger)
 library(patchwork)
 
 #set environment
-wd = "~/Desktop/Projects/EnvPredict/"
+wd = "<yourpath>/EnvPredict/"
 subproj = "KessCod2020"
 setwd(paste0(wd, subproj))
 
