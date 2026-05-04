@@ -10,7 +10,7 @@ library(ranger)
 library(patchwork)
 
 #set environment
-wd = "~/Desktop/Projects/EnvPredict/"
+wd = "<yourpath>/EnvPredict/"
 subproj = "MVWScallop2024"
 setwd(paste0(wd, subproj))
 
