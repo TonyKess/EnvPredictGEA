@@ -3,7 +3,7 @@ library(data.table)
 library(sdmpredictors)
 library(raster)
 
-wd = "~/EnvPredict/"
+wd = "<yourpath>/EnvPredict/"
 subproj = "KessCod2020"
 setwd(paste0(wd, subproj))
 data_path = "~/EnvPredict/Envdataset"
