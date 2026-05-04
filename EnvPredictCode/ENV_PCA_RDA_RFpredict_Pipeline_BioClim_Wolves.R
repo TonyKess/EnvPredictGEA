@@ -10,7 +10,7 @@ library(ranger)
 library(patchwork)
 
 #set environment
-wd = "~/Desktop/Projects/EnvPredict/"
+wd = "<yourpath>/EnvPredict/"
 subproj = "Schweizer_Wolves"
 setwd(paste0(wd, subproj))
 
