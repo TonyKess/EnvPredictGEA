@@ -147,3 +147,39 @@ Add our clusters to our environmental PC data
 ```
 Env_PCs_clusters  <- bind_cols(EnvPC_Biovars, cluster = Env_PCs_clusters$cluster)
 ```
+#3. PCA of genetic variation in each species,and correlation of genetic and environmental PCs per species.
+Now we use pcadapt to carry out PCA of genomic data. First read data into pcadapt, and match to the environmental data:
+```
+pcadapt.object <-  read.pcadapt(paste0(subproj, ".bed"), type = "bed")
+Fam  <- fread(paste0(subproj, ".fam")) %>%  
+  mutate(FID = V1, IID = V2) %>%
+  select(FID, IID)
+Env_PCs_clusters <- inner_join(Fam, Env_PCs_clusters)
+```
+Now carry out PCA and get PCA scores across 5 axes:
+```
+PCA <- pcadapt(input = pcadapt.object , K = 5)
+PCAScores <- PCA$scores
+colnames(PCAScores) <- paste0("PC", rep(1:5))
+```
+Evaluate the Scree plot:
+```
+plot(PCA, option = "screeplot") + theme_classic()
+
+```
+
+<img width="895" height="542" alt="image" src="https://github.com/user-attachments/assets/3829b021-77eb-4473-80d7-d7fb30c7e828" />
+Cattel method says K ~ 3
+
+Now combine Genetic and Environmental PCAs and plot:
+```
+GenoPCA_EnvPCA<- data.frame(bind_cols(Env_PCs_clusters, PCAScores))
+
+GenoPCA_12 <- ggplot() + 
+  geom_point(data = GenoPCA_EnvPCA, aes(x = PC1, y = PC2, colour = Comp.1), size = 3) + 
+  theme_classic() +
+  scale_color_gradient(low = "blue", high = "red")
+```
+<img width="804" height="475" alt="image" src="https://github.com/user-attachments/assets/58e530b0-4c4b-4a8b-8946-b2928e87235e" />
+Lots of genome/environment correlation!
+
