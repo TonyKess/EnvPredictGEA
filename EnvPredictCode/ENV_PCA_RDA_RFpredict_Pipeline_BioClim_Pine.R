@@ -10,7 +10,7 @@ library(ranger)
 library(patchwork)
 
 #set environment
-wd = "~/Desktop/Projects/EnvPredict/"
+wd = "<yourpath>/EnvPredict/"
 subproj = "Mahony2020_pinus"
 setwd(paste0(wd, subproj))
 
