@@ -1,7 +1,7 @@
-setwd("~/EnvPredict/")
+setwd("~/Desktop/Projects/EnvPredict/")
 library(superheat)
 library(wesanderson)
-cortable <- fread("Cortabletopivot.tsv")
+cortable <- fread("GenticPCEnvPCcortable.tsv")
 
 cortable2 <- cortable %>%
   mutate(PC_Species = paste0(Var1, "_", str_replace(Species, " ", "_"))) %>%
