@@ -1,5 +1,5 @@
 #setwd
-setwd("~/Desktop/Projects/EnvPredict/Lotterhos2023Simulation/")
+setwd("<yourpath>/EnvPredict/Lotterhos2023Simulation/")
 library(tidyverse)
 library(ggridges)
 library(broom.mixed)
