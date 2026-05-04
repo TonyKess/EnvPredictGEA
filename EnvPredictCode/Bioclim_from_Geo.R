@@ -3,7 +3,7 @@ library(data.table)
 library(geodata)
 library(raster)
 #set environment
-wd = "~/EnvPredict/"
+wd = "<yourpath>/EnvPredict/"
 subproj = "AtlanticSalmon"
 setwd(paste0(wd, subproj))
 data_path = "~/EnvPredict/Envdataset"
