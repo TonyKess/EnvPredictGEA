@@ -3,10 +3,10 @@ library(data.table)
 library(sdmpredictors)
 library(raster)
 
-wd = "~/Desktop/Projects/EnvPredict/"
+wd = "~/EnvPredict/"
 subproj = "KessCod2020"
 setwd(paste0(wd, subproj))
-data_path = "~/Desktop/Projects/EnvPredict/Envdataset"
+data_path = "~/EnvPredict/Envdataset"
 
 Geo <- data.frame(fread(paste0(subproj, "_Geo.tsv"))) 
 
@@ -32,4 +32,3 @@ Env <- inner_join(Geo, my.sites.environment)
 
 write.table(Env, 
             paste0(subproj, "_Env.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
-

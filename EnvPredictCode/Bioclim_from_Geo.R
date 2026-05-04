@@ -3,10 +3,10 @@ library(data.table)
 library(geodata)
 library(raster)
 #set environment
-wd = "~/Desktop/Projects/EnvPredict/"
+wd = "~/EnvPredict/"
 subproj = "AtlanticSalmon"
 setwd(paste0(wd, subproj))
-data_path = "~/Desktop/Projects/EnvPredict/Envdataset"
+data_path = "~/EnvPredict/Envdataset"
 
 #bring in geo data
 Geo <- data.frame(fread(paste0(subproj, "_Geo.tsv"))) 

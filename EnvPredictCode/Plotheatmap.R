@@ -1,4 +1,4 @@
-setwd("~/Desktop/Projects/EnvPredict/")
+setwd("~/EnvPredict/")
 library(superheat)
 library(wesanderson)
 cortable <- fread("Cortabletopivot.tsv")

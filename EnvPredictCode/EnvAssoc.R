@@ -1,4 +1,4 @@
-setwd("~/Desktop/Projects/EnvPredict/")
+setwd("~/EnvPredict/")
 dataset <- fread("Supplementary_Table_1_Allspecies_cortests.csv")
 PCs <- paste0("PC", rep(1:4))
 Comps <- paste0("Comp.", rep(1:4))
