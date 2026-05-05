@@ -1,7 +1,7 @@
-This workflow goes through show code from EnvPredict performs:
+This workflow shows code from EnvPredict that performs:
 1. Extraction of environmental variables
-2. Scaling and PCA of envrionmental variables
-3. PCA of genetic variation in each species,and correlation of genetic and environmental PCs per species.
+2. Scaling and PCA of environmental variables
+3. PCA of genetic variation in each species, and correlation of genetic and environmental PCs per species.
 4. RDA of genetic and environmental variation in each species, with and without structure correction
 5. Splitting of datasets into detect and test sets
 6. Outlier detection using RDA in detect set, with and without structure correction
@@ -46,8 +46,8 @@ write.table(Env,
             paste0(subproj, "_Env.tsv"), col.names = T, row.names = F, quote = F, sep = "\t")
 ```
 
-# 2. Scaling and PCA of envrionmental variables - 
-[This code marks the begining of the Env_PCA_RDA_RFpredict_pipeline workflow](https://github.com/TonyKess/EnvPredictGEA/blob/main/EnvPredictCode/ENV_PCA_RDA_RFpredict_Pipeline_BioClim_AtlanticSalmon.R)
+# 2. Scaling and PCA of environmental variables - 
+[This code marks the beginning of the Env_PCA_RDA_RFpredict_pipeline workflow](https://github.com/TonyKess/EnvPredictGEA/blob/main/EnvPredictCode/ENV_PCA_RDA_RFpredict_Pipeline_BioClim_AtlanticSalmon.R[...]
 
 First, load packages
 ```
@@ -98,7 +98,7 @@ summary(Env_PCs)
 #combine env and PC env data
 EnvPC_Biovars <- bind_cols(Env,Env_PCs$scores[,1:5])
 ```
-Now we build a function to evaluate the number of  kmeans clusters in environmental data for splitting test and training data
+Now we build a function to evaluate the number of kmeans clusters in environmental data for splitting test and training data
 ```
 kmeans_evalfunc <- function(n_clusters,PCA){
   
@@ -147,7 +147,7 @@ Add our clusters to our environmental PC data
 ```
 Env_PCs_clusters  <- bind_cols(EnvPC_Biovars, cluster = Env_PCs_clusters$cluster)
 ```
-# 3. PCA of genetic variation in each species,and correlation of genetic and environmental PCs per species.
+# 3. PCA of genetic variation in each species, and correlation of genetic and environmental PCs per species.
 Now we use pcadapt to carry out PCA of genomic data. First read data into pcadapt, and match to the environmental data:
 ```
 pcadapt.object <-  read.pcadapt(paste0(subproj, ".bed"), type = "bed")
@@ -223,7 +223,7 @@ GenoRDA_12 <- ggplot() +
 <img width="856" height="549" alt="image" src="https://github.com/user-attachments/assets/4edb4f54-f4e6-4469-86df-59c136e9c2ef" />
 Wow, looks great! The environmental gradient and genetic clustering is clear across the first two RDA axes
 
-Now lets plot the PC-corrected RDA:
+Now let's plot the PC-corrected RDA:
 
 ```
 GenoRDAPCcor_12 <- ggplot() + 
@@ -237,7 +237,7 @@ This looks worse.
 Note these are the "spruced up" figures from the manuscript but mostly I just made the font bigger and bolder.
 
 # 5. Splitting of datasets into detect and test sets
-We separate these for outlier detection and then testing whether those outliers are any good at predicting environments. We need to split the data, starting with a training set for detection of outliers:
+We separate these for outlier detection and then testing whether those outliers are any good at predicting environments. We need to split the data, starting with a training set for detection of outliers.
 
 ```
 set.seed(123)  # for reproducibility
@@ -349,7 +349,6 @@ PC_cor_OL_500 <- unique(c(PC_cor_OL_RDA1_500$V2, PC_cor_OL_RDA2_500$V2))
 
 
 
-
 write.table(PC_cor_OL_100, "PCcor.OLSNPs100.tsv", col.names = F, row.names = F, sep = "\t", quote = F)
 write.table(PC_cor_OL_200, "PCcor.OLSNPs200.tsv", col.names = F, row.names = F, sep = "\t", quote = F)
 write.table(PC_cor_OL_300, "PCcor.OLSNPs300.tsv", col.names = F, row.names = F, sep = "\t", quote = F)
@@ -369,7 +368,7 @@ test.fams <- fread(paste0(subproj,  ".test.PCcor.OL.100.fam")) %>%
 test_ENV <- inner_join(test.fams, GenoPCA_EnvPCA)
 ```
 
-We use this function to import all of the SNP dosage datasets for each set RDA outliers:
+We use this function to import all of the SNP dosage datasets for each set of RDA outliers:
 ```
 import_datasets <- function(suffixes, base_name) {
   
