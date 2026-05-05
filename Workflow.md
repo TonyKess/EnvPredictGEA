@@ -183,3 +183,55 @@ GenoPCA_12 <- ggplot() +
 <img width="804" height="475" alt="image" src="https://github.com/user-attachments/assets/58e530b0-4c4b-4a8b-8946-b2928e87235e" />
 Lots of genome/environment correlation!
 
+#4. RDA of genetic and environmental variation in each species, with and without structure correction
+First use plink to make a .raw dosage file, RDA likes these. You can do this right from the R console:
+```
+system(paste0("source ~/.zshrc; conda activate plink; plink --bfile ", subproj, 
+              " --recodeA --allow-extra-chr --chr-set 29 --maf 0.01 --out ", subproj))
+```
+Read in the dosages and impute by common value using Forester script:
+```
+genos.dose <- fread(paste0(subproj, ".raw"), sep = " ") %>%  select (-FID, -IID, -PAT, -MAT, -SEX, -PHENOTYPE)
+genos.dose.imp<- apply(genos.dose, 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
+```
+
+Run RDA, without structure correction:
+```
+Full.rda <- rda(genos.dose.imp ~ GenoPCA_EnvPCA$Comp.1 + GenoPCA_EnvPCA$Comp.2  + GenoPCA_EnvPCA$Comp.3  ,scale=T )
+```
+And with the first 3 genomic PCs:
+```
+Full.PCcor.rda <- rda(genos.dose.imp ~  GenoPCA_EnvPCA$Comp.1 + GenoPCA_EnvPCA$Comp.2  + GenoPCA_EnvPCA$Comp.3  + Condition(GenoPCA_EnvPCA$PC1 + GenoPCA_EnvPCA$PC2 + GenoPCA_EnvPCA$PC3) ,scale=T )
+```
+Get RDA scores per individual in the ordinations, combine them into data frames with environmental data:
+```
+Full.rda.site_scores <- as.data.frame(unclass(scores(Full.rda, display = "sites")))
+Full.rda.PCcor.site_scores <- as.data.frame(unclass(scores(Full.PCcor.rda, display = "sites")))
+colnames(Full.rda.PCcor.site_scores) <- c("RDA1.PCcor", "RDA2.PCcor")
+colnames(Full.rda.Geocor.site_scores) <- c("RDA1.Geocor", "RDA2.Geocor")
+
+
+GenoPCA_EnvPCA_RDA <- bind_cols(GenoPCA_EnvPCA, Full.rda.site_scores, Full.rda.PCcor.site_scores)
+```
+Now plot RDA:
+```
+GenoRDA_12 <- ggplot() + 
+  geom_point(data =GenoPCA_EnvPCA_RDA , aes(x = RDA1, y = RDA2, colour = Comp.1), size = 3) + 
+  theme_classic() +
+  scale_color_gradient(low = "blue", high = "red")
+```
+<img width="856" height="549" alt="image" src="https://github.com/user-attachments/assets/4edb4f54-f4e6-4469-86df-59c136e9c2ef" />
+Wow, looks great! The environmental gradient and genetic clustering is clear across the first two RDA axes
+
+Now lets plot the PC-corrected RDA:
+
+```
+GenoRDAPCcor_12 <- ggplot() + 
+  geom_point(data =GenoPCA_EnvPCA_RDA , aes(x = RDA1.PCcor, y = RDA2.PCcor, colour = Comp.1), size = 3) + 
+  theme_classic() +
+  scale_color_gradient(low = "blue", high = "red")
+```
+<img width="841" height="522" alt="image" src="https://github.com/user-attachments/assets/e9d445ac-cc49-46c9-9881-0fa26c401675" />
+
+This looks worse.
+Note these are the "spruced up" figures from the manuscript but mostly I just made the font bigger and bolder.
