@@ -35,7 +35,7 @@ Mahony et al. 2020; https://datadryad.org/dataset/doi:10.5061/dryad.56j8vq8
 
 Black spruce 
 https://doi.org/10.5281/zenodo.19961100 
-
+Filtered from larger DaRTseq dataset [here](https://github.com/TonyKess/EnvPredictGEA/blob/main/EnvPredictCode/subset_blackspruce_filter.R)
 
 ## R Packages (with versions)
 
