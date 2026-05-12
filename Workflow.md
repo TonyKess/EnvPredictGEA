@@ -47,7 +47,7 @@ write.table(Env,
 ```
 
 # 2. Scaling and PCA of environmental variables - 
-[This code marks the beginning of the Env_PCA_RDA_RFpredict_pipeline workflow](https://github.com/TonyKess/EnvPredictGEA/blob/main/EnvPredictCode/ENV_PCA_RDA_RFpredict_Pipeline_BioClim_AtlanticSalmon.R[...]
+[This code marks the beginning of the Env_PCA_RDA_RFpredict_pipeline workflow](https://github.com/TonyKess/EnvPredictGEA/blob/main/EnvPredictCode/ENV_PCA_RDA_RFpredict_Pipeline_BioClim_AtlanticSalmon.[...])
 
 First, load packages
 ```
@@ -131,6 +131,7 @@ Apply to our environmental data
 kmeans_evalfunc(10,Env_PCs$scores) + theme_classic()
 ```
 Cool, K = 5 looks fine, wss just keeps going down but marginally.
+
 <img width="1061" height="653" alt="image" src="https://github.com/user-attachments/assets/f06ef435-d64a-4297-b8cf-009d219634f9" />
 
 Now we make a function to add clusters:
@@ -169,6 +170,7 @@ plot(PCA, option = "screeplot") + theme_classic()
 ```
 
 <img width="895" height="542" alt="image" src="https://github.com/user-attachments/assets/3829b021-77eb-4473-80d7-d7fb30c7e828" />
+
 Cattel method says K ~ 3
 
 Now combine Genetic and Environmental PCAs and plot:
@@ -180,7 +182,9 @@ GenoPCA_12 <- ggplot() +
   theme_classic() +
   scale_color_gradient(low = "blue", high = "red")
 ```
+
 <img width="804" height="475" alt="image" src="https://github.com/user-attachments/assets/58e530b0-4c4b-4a8b-8946-b2928e87235e" />
+
 Lots of genome/environment correlation!
 
 # 4. RDA of genetic and environmental variation in each species, with and without structure correction
@@ -220,7 +224,9 @@ GenoRDA_12 <- ggplot() +
   theme_classic() +
   scale_color_gradient(low = "blue", high = "red")
 ```
+
 <img width="856" height="549" alt="image" src="https://github.com/user-attachments/assets/4edb4f54-f4e6-4469-86df-59c136e9c2ef" />
+
 Wow, looks great! The environmental gradient and genetic clustering is clear across the first two RDA axes
 
 Now let's plot the PC-corrected RDA:
@@ -231,6 +237,7 @@ GenoRDAPCcor_12 <- ggplot() +
   theme_classic() +
   scale_color_gradient(low = "blue", high = "red")
 ```
+
 <img width="841" height="522" alt="image" src="https://github.com/user-attachments/assets/e9d445ac-cc49-46c9-9881-0fa26c401675" />
 
 This looks worse.
@@ -469,6 +476,7 @@ RF_result_plot <- ggplot() +
   ylim(-0.25,1)  +
   scale_color_manual(values = color_palette)
 ```
+
 <img width="776" height="506" alt="image" src="https://github.com/user-attachments/assets/bbd6249b-7f6b-48a8-965a-7716a377d1d7" />
 
 Now we can also test the model performance between corrected and uncorrected outlier sets:
