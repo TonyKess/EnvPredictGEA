@@ -6,7 +6,7 @@ library(stringr)
 # ------------------------------------------------------------------------------
 
 # Read the data 
-raw_df <-fread( "~/Desktop/Projects/EnvPredict/EnvPredictSubmission/Supplementary_Table_Simulation_Scenario_Summary.tsv" )
+raw_df <-fread( "<yourpath>/EnvPredict/Supplementary_Table_Simulation_Scenario_Summary.tsv" )
 
 # ------------------------------------------------------------------------------
 # Reshape and Standardize Data
