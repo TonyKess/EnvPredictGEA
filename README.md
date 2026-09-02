@@ -40,17 +40,23 @@ Filtered from larger DaRTseq dataset [here](https://github.com/TonyKess/EnvPredi
 ## R Packages (with versions)
 
 ```r
-tidyverse         2.0.0      # Data manipulation and visualization
-data.table        1.16.4     # Fast data reading/writing
-vegan             2.6.8      # PCA, RDA, ecological statistics
-ranger            0.17.0     # Random Forest implementation
-caret             7.0.1      # Machine learning utilities
-geodata           0.6.2      # WorldClim and BioOracle data download
-raster            3.6.30     # Raster/spatial data manipulation
-terra             1.8.10     # Modern spatial data (marine variables)
-patchwork         1.3.0      # Multi-panel figure composition
-qvalue            2.34.0     # Q-value multiple testing correction
-pcadapt           4.4.0      # PCA-based population differentiation
-robust            0.7.5      # Robust statistics
+tidyverse         2.0.0      # Data wrangling, plotting, tidying
+data.table        1.16.4     # High-performance tabular data import and manipulation
+vegan             2.6-8      # Multivariate ecology methods (RDA)
+ranger            0.17.0     # Fast Random Forest implementation for regression
+caret             7.0-1      # Unified machine-learning training, tuning, and resampling utilities
+geodata           0.6-2      # Download/access environmental rasters (BioClim variables)
+raster            3.6-30     # Raster/grid spatial data processing and extraction
+patchwork         1.3.0      # Compose multiple ggplot panels into single figures
+qvalue            2.34.0     # False-discovery-rate control using q-values
+pcadapt           4.4.0      # PCA-based genome scan/population differentiation methods
+robust            0.7-5      # Robust statistical estimators and resistant methods
+sdmpredictors     0.2.15     # Access species distribution modelling predictor layers (BioOracle2 variables)
+superheat         0.1.0      # Enhanced heatmaps with side plots and annotations
+ggridges          0.5.6      # Ridgeline plots (stacked distribution visualization)
+wesanderson       0.3.7      # Colour palettes for publication-style graphics
+broom.mixed       0.2.9.6    # Tidy summaries of mixed-model outputs
+dplyr             1.1.4      # Grammar of data manipulation (also included in tidyverse)
 ```
+
 
