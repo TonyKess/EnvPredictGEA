@@ -95,7 +95,7 @@ sim_long_FDR <- sim_classified %>%
     values_to = "FPR"
   )
 
-
+#plot
 ggplot(sim_long, aes(x = FNR, fill = Method)) +
   geom_density(alpha = 0.5) +
   # facet_wrap allows 'free' scales for EVERY individual panel
@@ -119,7 +119,7 @@ ggplot(sim_long, aes(x = FNR, fill = Method)) +
   ) + theme_classic()
 
 
-
+#plot
 ggplot(sim_long_FDR, aes(x = FPR, fill = Method)) +
   geom_density(alpha = 0.5) +
   # facet_wrap allows 'free' scales for EVERY individual panel
@@ -180,7 +180,6 @@ scenario_summary_FDR <- sim_classified_FDR %>%
     
     .groups = "drop"
   )
-# Assess separation of parameters across scenarios
 
 
 # View the table
